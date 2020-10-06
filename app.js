@@ -1,14 +1,14 @@
 const express =require('express');
 const app=express();
 const morgan= require('morgan');
-//const dbConnect= require('./dbConfig/dbConnect')
+const dbConnect= require('./src/config/dbConnect')
 const bodyParser= require('body-parser');
 const userRoute=require('./src/api/user/userRoute');
-const url='mongodb://localhost:27017/dummyDB';
+const apiKey = require('./src/keys/dbKeys');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-//dbConnect.connectToDatabase(url);
+dbConnect.connectToDb(apiKey.DB_URL);
 app.use('/user',userRoute)
 
 
