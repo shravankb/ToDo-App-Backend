@@ -1,4 +1,3 @@
- const { response } = require('express');
 const userServices = require('./userServices');
 
  signIn = async (req,res,next)=>{
@@ -8,7 +7,10 @@ const userServices = require('./userServices');
      userData = await userServices.signIn(req.body)
      res.send(userData)
  } catch (error) {
-     
+     res.status(400).send({
+         errorMessage: error.message,
+         errorName: error.name
+     })
  }
 }
 
