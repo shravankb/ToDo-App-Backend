@@ -9,4 +9,13 @@ try {
 }
 }
 
-module.exports ={ createUser}
+countUsers = async(query) =>{
+    try {
+        return await userModel.countDocuments({email: query.email})
+    } catch (error) {
+        throw error
+
+    }
+}
+
+module.exports ={ createUser, countUsers}
